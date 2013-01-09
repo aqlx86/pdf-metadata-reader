@@ -35,11 +35,17 @@ class PDFMetadataReader {
 		// parse keywords
 		if(isset($this->info['Keywords']))
 		{
+			$keywords = array();
+
 			foreach(explode(';', $this->info['Keywords']) as $keyword)
 			{
-				list($key_name, $key_value) = explode('=', $keyword);
+				if($keyword != '')
+				{
+					list($key_name, $key_value) = explode('=', $keyword);
 
-				$keywords[trim($key_name)] = trim($key_value);
+					$keywords[trim($key_name)] = trim($key_value);					
+				}
+
 			}
 
 			$this->info['Keywords'] = $keywords;
